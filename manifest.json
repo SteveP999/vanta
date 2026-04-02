@@ -1,0 +1,21 @@
+{
+  "name": "Neon Thunder",
+  "short_name": "Neon Thunder",
+  "description": "80s Glam Rock",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0d0c0b",
+  "theme_color": "#00CFFF",
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/SteveP999/Hello-Texas-Records/main/neon-thunder-logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "https://raw.githubusercontent.com/SteveP999/Hello-Texas-Records/main/neon-thunder-logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
