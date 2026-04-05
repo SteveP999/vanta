@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanta — Official Music | Hello Texas Records</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Saira:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black:   #050305;
+  --deep:    #0A070A;
+  --gold:    #C8941A;
+  --gold-lt: #E8B840;
+  --red:     #AA1A1A;
+  --red-lt:  #CC2222;
+  --white:   #EEE8E0;
+  --muted:   #706860;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Barlow Condensed', sans-serif;
+  --font-ui:      'Saira', sans-serif;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── SCANLINE TEXTURE ──────────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(to bottom, rgba(5,3,5,0.95), transparent);
+  transition: background 0.3s;
+}
+nav.scrolled {
+  background: rgba(5,3,5,0.98);
+  border-bottom: 1px solid rgba(200,148,26,0.15);
+}
+.nav-brand {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.15em;
+  color: var(--gold);
+  text-decoration: none;
+  line-height: 1;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(238,232,224,0.4);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  overflow: hidden;
+  padding: 0 2rem 7rem;
+}
+
+/* Band photo background */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://raw.githubusercontent.com/SteveP999/vanta/main/vanta-hero-background.png');; /* b15b8810-60c1-4acd-9619-6fd23828a026.png */
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  transform: scale(1.03);
+  transition: transform 12s ease;
+}
+.hero:hover .hero-bg { transform: scale(1.06); }
+
+/* Gradient overlays */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(3,2,3,0.15) 0%, rgba(3,2,3,0.05) 50%, rgba(3,2,3,0.55) 100%);
+  pointer-events: none;
+}
+}
+
+/* Red glow bottom */
+.hero-glow-bottom {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 40%;
+  background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(170,26,26,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 4rem;
+  width: 100%;
+}
+
+/* Logo image — hero centrepiece */
+.hero-logo-img {
+  width: clamp(320px, 72vw, 900px);
+  margin-bottom: 1.5rem;
+  mix-blend-mode: screen;   /* knocks out the black background */
+  filter:
+    drop-shadow(0 0 60px rgba(200,148,26,0.5))
+    drop-shadow(0 0 120px rgba(170,26,26,0.3));
+  animation: fadein 1s 0.3s both;
+}
+
+.hero-tagline-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+  animation: fadein 1s 0.55s both;
+}
+.hero-tagline-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,148,26,0.5));
+}
+.hero-tagline-line:last-child {
+  background: linear-gradient(to left, transparent, rgba(200,148,26,0.5));
+}
+.hero-tagline {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(238,232,224,0.45);
+  font-weight: 300;
+}
+.hero-genre {
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--red-lt);
+  margin-bottom: 2.2rem;
+  font-weight: 600;
+  animation: fadein 1s 0.7s both;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  animation: fadein 1s 0.85s both;
+}
+.hero-cta {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.6rem 1.8rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.hero-cta.primary {
+  background: var(--gold);
+  color: var(--black);
+}
+.hero-cta.primary:hover { background: var(--gold-lt); }
+.hero-cta.secondary {
+  border: 1px solid rgba(200,148,26,0.3);
+  color: var(--gold);
+}
+.hero-cta.secondary:hover { border-color: var(--gold); background: rgba(200,148,26,0.08); }
+
+@keyframes fadein { from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:translateY(0);} }
+
+/* ── BIO ───────────────────────────────────────────────────── */
+#bio {
+  padding: 5rem 0;
+  background: var(--deep);
+  border-top: 1px solid rgba(200,148,26,0.1);
+  position: relative;
+}
+#bio::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+}
+.bio-inner { max-width: 700px; margin: 0 auto; padding: 0 2rem; text-align: center; }
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+}
+.eyebrow::before, .eyebrow::after {
+  content: '';
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, transparent, rgba(200,148,26,0.5));
+}
+.eyebrow::after { background: linear-gradient(to left, transparent, rgba(200,148,26,0.5)); }
+.bio-text {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 300;
+  color: rgba(238,232,224,0.6);
+  letter-spacing: 0.03em;
+  line-height: 1.85;
+}
+.bio-text strong { color: var(--white); font-weight: 600; }
+
+/* ── LATEST SINGLE BANNER ──────────────────────────────────── */
+#latest {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  background: #060206;
+  border-top: 1px solid rgba(200,148,26,0.08);
+}
+.latest-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+.latest-badge-wrap { position: relative; }
+.latest-art {
+  width: 200px; height: 200px;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 0 60px rgba(200,148,26,0.2), 0 0 20px rgba(170,26,26,0.2);
+}
+.latest-art-placeholder {
+  width: 200px; height: 200px;
+  background: linear-gradient(135deg, #1A0A0A, #0A0408);
+  border: 1px solid rgba(200,148,26,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 3rem; color: rgba(200,148,26,0.2);
+}
+.latest-new-badge {
+  position: absolute;
+  top: -10px; right: -10px;
+  background: var(--red);
+  font-family: var(--font-ui);
+  font-size: 0.48rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  color: var(--white);
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+.latest-label {
+  font-family: var(--font-ui);
+  font-size: 0.54rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--red-lt);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.latest-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: 0.08em;
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 0.4rem;
+}
+.latest-artist {
+  font-family: var(--font-ui);
+  font-size: 0.62rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 300;
+  margin-bottom: 1.3rem;
+}
+.latest-desc {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(238,232,224,0.5);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  max-width: 420px;
+}
+.latest-play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.65rem 1.8rem;
+  background: var(--gold);
+  color: var(--black);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.latest-play-btn:hover { background: var(--gold-lt); }
+
+/* ── ALBUM SECTIONS ────────────────────────────────────────── */
+.album-section {
+  padding: 5rem 0;
+  border-top: 1px solid rgba(20,14,20,0.9);
+  position: relative;
+}
+.album-section.signal  { background: #080508; }
+.album-section.damage  { background: #070407; }
+.album-section.gravity { background: #060408; }
+
+.album-section::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, transparent 10%, var(--gold) 50%, transparent 90%);
+}
+
+.album-wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+.album-layout { display: grid; grid-template-columns: 260px 1fr; gap: 4rem; align-items: start; }
+.album-art-wrap { position: sticky; top: 90px; }
+
+.album-art-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  box-shadow: 0 8px 50px rgba(0,0,0,0.6), 0 0 30px rgba(200,148,26,0.1);
+  transition: box-shadow 0.3s;
+}
+.album-art-img:hover {
+  box-shadow: 0 8px 60px rgba(0,0,0,0.7), 0 0 50px rgba(200,148,26,0.18);
+}
+.album-art-placeholder {
+  width: 100%; aspect-ratio: 1;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.8rem;
+  border: 1px solid rgba(200,148,26,0.2);
+  background: linear-gradient(135deg, #0E080E 0%, #060306 100%);
+  position: relative; overflow: hidden;
+}
+.album-art-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(200,148,26,0.02) 20px, rgba(200,148,26,0.02) 21px);
+}
+.ph-v {
+  font-family: var(--font-display); font-size: 5rem;
+  color: transparent; -webkit-text-stroke: 1px rgba(200,148,26,0.2);
+  letter-spacing: 0.1em; line-height: 1; position: relative;
+}
+.ph-label {
+  font-family: var(--font-ui); font-size: 0.5rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(200,148,26,0.3); position: relative;
+}
+
+.album-tag {
+  font-family: var(--font-ui); font-size: 0.58rem;
+  letter-spacing: 0.35em; text-transform: uppercase;
+  color: var(--red-lt); font-weight: 600; margin-bottom: 0.4rem;
+}
+.album-title-text {
+  font-family: var(--font-display); font-size: 3.5rem;
+  letter-spacing: 0.1em; color: var(--white);
+  line-height: 0.9; margin-bottom: 0.3rem;
+}
+.album-artist {
+  font-family: var(--font-ui); font-size: 0.65rem;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.1rem; font-weight: 300;
+}
+.album-desc {
+  font-family: var(--font-body); font-size: 1rem;
+  font-weight: 300; color: rgba(238,232,224,0.5);
+  letter-spacing: 0.02em; line-height: 1.8;
+  margin-bottom: 1.3rem; max-width: 440px;
+}
+.stream-row { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.stream-btn {
+  font-family: var(--font-ui); font-size: 0.56rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  font-weight: 700; padding: 0.38rem 1rem;
+  border: 1px solid rgba(200,148,26,0.25);
+  color: var(--gold); text-decoration: none;
+  transition: all 0.2s; background: none; cursor: pointer;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+}
+.stream-btn:hover { background: rgba(200,148,26,0.1); border-color: var(--gold); }
+
+/* TRACKLIST */
+.tracklist { border-top: 1px solid rgba(200,148,26,0.12); padding-top: 0.5rem; margin-top: 1.5rem; }
+.track-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 36px;
+  align-items: center; gap: 0.75rem;
+  padding: 0.65rem 0.5rem;
+  border-bottom: 1px solid rgba(238,232,224,0.05);
+  transition: background 0.15s, padding-left 0.15s;
+  position: relative;
+}
+.track-row::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0; background: var(--gold);
+  transition: width 0.2s; opacity: 0.15;
+}
+.track-row:hover::before { width: 2px; }
+.track-row:hover { background: rgba(200,148,26,0.04); padding-left: 0.75rem; }
+.track-num {
+  font-family: var(--font-ui); font-size: 0.6rem;
+  color: rgba(200,148,26,0.3); text-align: right;
+  font-weight: 700; letter-spacing: 0.05em;
+}
+.track-title {
+  font-family: var(--font-body); font-size: 1.05rem;
+  font-weight: 600; color: var(--white);
+  letter-spacing: 0.03em; text-transform: uppercase;
+}
+.track-play-btn {
+  width: 32px; height: 32px; background: none;
+  border: 1px solid rgba(200,148,26,0.3);
+  color: var(--gold); cursor: pointer;
+  font-size: 0.55rem;
+  display: flex; align-items: center; justify-content: center;
+  padding-left: 2px; transition: all 0.18s;
+  clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+}
+.track-play-btn:hover { background: rgba(200,148,26,0.15); border-color: var(--gold); }
+.track-play-btn.playing { background: var(--gold); color: var(--black); border-color: var(--gold); }
+
+/* ── SINGLES SECTION ───────────────────────────────────────── */
+#singles {
+  padding: 5rem 0;
+  background: #060206;
+  border-top: 1px solid rgba(200,148,26,0.08);
+  position: relative;
+}
+#singles::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, transparent 10%, var(--red) 50%, transparent 90%);
+}
+.singles-wrap { max-width: 980px; margin: 0 auto; padding: 0 2rem; }
+.singles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.single-card {
+  position: relative;
+  border: 1px solid rgba(200,148,26,0.1);
+  background: rgba(200,148,26,0.02);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.single-card:hover { border-color: rgba(200,148,26,0.3); }
+.single-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+}
+.single-art-wrap { position: relative; overflow: hidden; }
+.single-art-img {
+  width: 100%; aspect-ratio: 1;
+  object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.single-card:hover .single-art-img { transform: scale(1.04); }
+.single-art-placeholder {
+  width: 100%; aspect-ratio: 1;
+  background: linear-gradient(135deg, #100810, #060306);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 2rem;
+  color: rgba(200,148,26,0.2); border-bottom: 1px solid rgba(200,148,26,0.1);
+}
+.single-play-overlay {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(5,3,5,0.5);
+  opacity: 0; transition: opacity 0.2s;
+}
+.single-card:hover .single-play-overlay { opacity: 1; }
+.single-play-big {
+  width: 52px; height: 52px;
+  background: var(--gold);
+  border: none; color: var(--black);
+  font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  padding-left: 4px;
+  clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+  transition: background 0.2s, transform 0.15s;
+}
+.single-play-big:hover { background: var(--gold-lt); transform: scale(1.08); }
+.single-info { padding: 1.2rem 1.3rem 1.5rem; }
+.single-type {
+  font-family: var(--font-ui); font-size: 0.52rem;
+  letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--red-lt); font-weight: 700; margin-bottom: 0.35rem;
+}
+.single-title {
+  font-family: var(--font-display); font-size: 1.6rem;
+  letter-spacing: 0.08em; color: var(--white);
+  line-height: 1; margin-bottom: 0.2rem;
+}
+.single-artist {
+  font-family: var(--font-ui); font-size: 0.55rem;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: rgba(200,148,26,0.5); font-weight: 300;
+}
+
+/* ── PLAYER ────────────────────────────────────────────────── */
+#player {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(5,3,5,0.98);
+  border-top: 1px solid rgba(200,148,26,0.2);
+  backdrop-filter: blur(14px);
+  display: none;
+  grid-template-columns: 220px 1fr 180px;
+  align-items: center; gap: 1.5rem; padding: 0.75rem 2rem;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+#player.visible { display: grid; transform: translateY(0); }
+.p-info { display: flex; flex-direction: column; gap: 0.1rem; min-width: 0; }
+.p-title { font-family: var(--font-body); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.p-album { font-family: var(--font-ui); font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); opacity: 0.6; }
+.p-controls { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
+.p-btns { display: flex; align-items: center; gap: 0.9rem; }
+.p-btn { background: none; border: none; color: rgba(238,232,224,0.35); cursor: pointer; font-size: 0.7rem; transition: color 0.15s; }
+.p-btn:hover { color: var(--white); }
+.p-play { width: 36px; height: 36px; background: var(--gold); border: none; color: var(--black); cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: transform 0.15s, background 0.15s; padding-left: 2px; clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%); }
+.p-play:hover { transform: scale(1.08); background: var(--gold-lt); }
+.p-prog { display: flex; align-items: center; gap: 0.5rem; width: 100%; }
+.p-time { font-family: var(--font-ui); font-size: 0.52rem; color: rgba(238,232,224,0.3); min-width: 26px; text-align: center; }
+.p-bar { flex: 1; height: 2px; background: rgba(238,232,224,0.08); cursor: pointer; }
+.p-fill { height: 100%; background: linear-gradient(to right, var(--red), var(--gold)); width: 0%; pointer-events: none; }
+.p-right { display: flex; align-items: center; gap: 0.75rem; justify-content: flex-end; }
+.p-vol { -webkit-appearance: none; width: 75px; height: 2px; background: rgba(238,232,224,0.1); outline: none; cursor: pointer; }
+.p-vol::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; background: var(--gold); cursor: pointer; }
+.p-close { background: none; border: none; color: rgba(238,232,224,0.2); cursor: pointer; font-size: 0.7rem; transition: color 0.2s; }
+.p-close:hover { color: rgba(238,232,224,0.5); }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer {
+  background: var(--black);
+  border-top: 1px solid rgba(200,148,26,0.08);
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-bottom: 60px;
+  position: relative;
+}
+footer::before {
+  content: ''; position: absolute;
+  top: 0; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.foot-name { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 0.2rem; }
+.foot-label { font-family: var(--font-ui); font-size: 0.54rem; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(200,148,26,0.3); margin-bottom: 1.3rem; }
+.foot-links { display: flex; gap: 1.5rem; justify-content: center; }
+.foot-links a { font-family: var(--font-ui); font-size: 0.54rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(200,148,26,0.3); text-decoration: none; transition: color 0.2s; font-weight: 600; }
+.foot-links a:hover { color: var(--gold); }
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media(max-width:768px) {
+  .album-layout { grid-template-columns: 1fr; }
+  .album-art-wrap { position: static; max-width: 220px; }
+  .singles-grid { grid-template-columns: 1fr; }
+  .latest-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+  .latest-art, .latest-art-placeholder { width: 160px; height: 160px; }
+  #player { grid-template-columns: 1fr; gap: 0.4rem; padding: 0.6rem 1rem; }
+  .p-right { justify-content: center; }
+  .nav-links { gap: 1.2rem; }
+}
+
+  /* Nav & footer logo (mix-blend-mode knocks out black bg) */
+  .nav-logo-img {
+    height: 38px;
+    width: auto;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 8px rgba(200,148,26,0.6));
+    display: block;
+  }
+  .foot-logo-img {
+    height: 54px;
+    width: auto;
+    mix-blend-mode: screen;
+    filter: drop-shadow(0 0 16px rgba(200,148,26,0.5));
+    margin-bottom: 0.6rem;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+</head>
+<body>
+
+<nav id="topnav">
+  <a href="#" class="nav-brand"><img src="https://raw.githubusercontent.com/SteveP999/vanta/main/vanta-logo.png" alt="VANTA" class="nav-logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="#bio">About</a></li>
+    <li><a href="#latest">Latest</a></li>
+    <li><a href="#singles">Singles</a></li>
+    <li><a href="#signal">Albums</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-glow-bottom"></div>
+  <div class="hero-content">
+    <!--
+      LOGO IMAGE: replace src with your hosted logo path
+      File: 183a36da-9e9e-42e7-87ba-03414bb5d72f.png (gold/red logo on black)
+    -->
+    <div class="hero-tagline">Hello Texas Records</div>
+      <div class="hero-tagline-line"></div>
+    </div>
+    <div class="hero-cta-row">
+      <button class="hero-cta primary" onclick="playTrack('single_tl')">&#9654; Play Dirty Signal</button>
+      <a href="#signal" class="hero-cta secondary">Discography</a>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section id="bio">
+  <div class="bio-inner">
+    <div class="eyebrow">About</div>
+    <p class="bio-text">
+      <strong>Vanta</strong> plays hard rock the way it used to hit — loud guitars, no irony, and songs that don't ask permission. Drawing from the heavy end of the late-80s and early-90s without living there, Vanta sounds like something that came up through the floor while you weren't paying attention.
+    </p>
+  </div>
+</section>
+
+<!-- LATEST SINGLE: TOO LOUD -->
+<section id="latest">
+  <div class="latest-inner">
+    <div class="latest-badge-wrap">
+      <!--
+        ALBUM ART: replace src with your hosted image path
+        File: Vanta_-_Dirty_Signal__Album_Cover_.png
+      -->
+      <img
+        src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Too%20Loud%20-%20Album%20Cover.png"
+        alt="Too Loud"
+        class="latest-art"
+        onerror="this.outerHTML='<div class=\'latest-art-placeholder\'>TL</div>'"
+      >
+      <div class="latest-new-badge">Latest Release</div>
+    </div>
+    <div>
+      <div class="latest-label">New Single</div>
+      <div class="latest-title">TOO LOUD</div>
+      <div class="latest-artist">Vanta</div>
+      <p class="latest-desc">Turn it up. Too Loud is Vanta at full volume — no filler, no apologies, exactly the way rock is supposed to hit.</p>
+      <button class="latest-play-btn" onclick="playTrack('single_tl')">
+        &#9654; Play Now
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNAL — ALBUM -->
+<section id="signal" class="album-section signal">
+  <div class="album-wrap">
+    <div class="album-layout">
+      <div class="album-art-wrap">
+        <!--
+          ALBUM ART: replace src with your hosted image path
+          File: Vanta_-_Signal_-_Album_Cover.png
+        -->
+        <img
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Signal%20-%20Album%20Cover.png"
+          alt="Signal"
+          class="album-art-img"
+          onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Signal</span></div>'"
+        >
+      </div>
+      <div class="album-info">
+        <div class="album-tag">Album · Hard Rock · Heavy</div>
+        <div class="album-title-text">SIGNAL</div>
+        <div class="album-artist">Vanta</div>
+        <p class="album-desc">The debut. Three songs with no warm-up, no apology, and no fade-out. Loud from the first note. Still loud at the end.</p>
+        <div class="stream-row">
+          <a href="#" class="stream-btn">&#9654; Spotify</a>
+          <a href="#" class="stream-btn">&#9834; Apple Music</a>
+        </div>
+        <div class="tracklist">
+          <div class="track-row">
+            <span class="track-num">01</span>
+            <span class="track-title">Don't Need Permission</span>
+            <button class="track-play-btn" onclick="playTrack('sig_dnp')">&#9654;</button>
+          </div>
+          <div class="track-row">
+            <span class="track-num">02</span>
+            <span class="track-title">Cut the Line</span>
+            <button class="track-play-btn" onclick="playTrack('sig_ctl')">&#9654;</button>
+          </div>
+          <div class="track-row">
+            <span class="track-num">03</span>
+            <span class="track-title">Dirty Signal</span>
+            <button class="track-play-btn" onclick="playTrack('sig_ds')">&#9654;</button>
+          </div>
+          <div class="track-row">
+            <span class="track-num">04</span>
+            <span class="track-title">Too Loud</span>
+            <button class="track-play-btn" onclick="playTrack('sig_tl')">&#9654;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAMAGE — ALBUM -->
+<section id="damage" class="album-section damage">
+  <div class="album-wrap">
+    <div class="album-layout">
+      <div class="album-art-wrap">
+        <!--
+          ALBUM ART: replace src with your hosted image path
+          File: Vanta_-_Damage_-_Album_Cover.png
+        -->
+        <img
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Damage%20-%20Album%20Cover.png"
+          alt="Damage"
+          class="album-art-img"
+          onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Damage</span></div>'"
+        >
+      </div>
+      <div class="album-info">
+        <div class="album-tag">Album · Hard Rock · Heavy</div>
+        <div class="album-title-text">DAMAGE</div>
+        <div class="album-artist">Vanta</div>
+        <p class="album-desc">The second record. Title earned. Everything on this one hits harder than you expect and leaves marks accordingly.</p>
+        <div class="stream-row">
+          <a href="#" class="stream-btn">&#9654; Spotify</a>
+          <a href="#" class="stream-btn">&#9834; Apple Music</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GRAVITY — ALBUM -->
+<section id="gravity" class="album-section gravity">
+  <div class="album-wrap">
+    <div class="album-layout">
+      <div class="album-art-wrap">
+        <!--
+          ALBUM ART: replace src with your hosted image path
+          File: Vanta_-_Gravity_-_Album_Cover.png
+        -->
+        <img
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Gravity%20-%20Album%20Cover.png"
+          alt="Gravity"
+          class="album-art-img"
+          onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Gravity</span></div>'"
+        >
+      </div>
+      <div class="album-info">
+        <div class="album-tag">Album · Hard Rock · Heavy</div>
+        <div class="album-title-text">GRAVITY</div>
+        <div class="album-artist">Vanta</div>
+        <p class="album-desc">The third record. Everything falls eventually. Gravity doesn't ask and it doesn't negotiate — neither does this album.</p>
+        <div class="stream-row">
+          <a href="#" class="stream-btn">&#9654; Spotify</a>
+          <a href="#" class="stream-btn">&#9834; Apple Music</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SINGLES -->
+<section id="singles">
+  <div class="singles-wrap">
+    <div class="eyebrow" style="justify-content:flex-start;">Singles</div>
+    <div class="singles-grid">
+
+      <!-- Don't Need Permission -->
+      <div class="single-card">
+        <div class="single-art-wrap">
+          <!--
+            SINGLE ART: replace src with your hosted image path
+            File: Don_t_Need_Permission_-_Album_Cover.png
+          -->
+          <img
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Don%27t%20Need%20Permission%20-%20Album%20Cover.png"
+            alt="Don't Need Permission"
+            class="single-art-img"
+            onerror="this.outerHTML='<div class=\'single-art-placeholder\'>DNP</div>'"
+          >
+          <div class="single-play-overlay">
+            <button class="single-play-big" onclick="playTrack('single_dnp')">&#9654;</button>
+          </div>
+        </div>
+        <div class="single-info">
+          <div class="single-type">Single</div>
+          <div class="single-title">DON'T NEED PERMISSION</div>
+          <div class="single-artist">Vanta</div>
+        </div>
+      </div>
+
+      <!-- Cut the Line -->
+      <div class="single-card">
+        <div class="single-art-wrap">
+          <!--
+            SINGLE ART: replace src with your hosted image path
+            File: Cut_the_line__Album_Cover_.png
+          -->
+          <img
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Cut%20the%20line%20%28Album%20Cover%29.png"
+            alt="Cut the Line"
+            class="single-art-img"
+            onerror="this.outerHTML='<div class=\'single-art-placeholder\'>CTL</div>'"
+          >
+          <div class="single-play-overlay">
+            <button class="single-play-big" onclick="playTrack('single_ctl')">&#9654;</button>
+          </div>
+        </div>
+        <div class="single-info">
+          <div class="single-type">Single</div>
+          <div class="single-title">CUT THE LINE</div>
+          <div class="single-artist">Vanta</div>
+        </div>
+      </div>
+
+      <!-- Dirty Signal -->
+      <div class="single-card">
+        <div class="single-art-wrap">
+          <!--
+            SINGLE ART: replace src with your hosted image path
+            File: Vanta_-_Dirty_Signal__Album_Cover_.png
+          -->
+          <img
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Dirty%20Signal%20%28Album%20Cover%29.png"
+            alt="Dirty Signal"
+            class="single-art-img"
+            onerror="this.outerHTML='<div class=\'single-art-placeholder\'>DS</div>'"
+          >
+          <div class="single-play-overlay">
+            <button class="single-play-big" onclick="playTrack('single_tl')">&#9654;</button>
+          </div>
+        </div>
+        <div class="single-info">
+          <div class="single-type">Single</div>
+          <div class="single-title">DIRTY SIGNAL</div>
+          <div class="single-artist">Vanta</div>
+        </div>
+      </div>
+
+      <!-- Too Loud -->
+      <div class="single-card">
+        <div class="single-art-wrap">
+          <img
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Too%20Loud%20-%20Album%20Cover.png"
+            alt="Too Loud"
+            class="single-art-img"
+            onerror="this.outerHTML='<div class=\'single-art-placeholder\'>TL</div>'"
+          >
+          <div class="single-play-overlay">
+            <button class="single-play-big" onclick="playTrack('single_tl')">&#9654;</button>
+          </div>
+        </div>
+        <div class="single-info">
+          <div class="single-type">Single · Latest Release</div>
+          <div class="single-title">TOO LOUD</div>
+          <div class="single-artist">Vanta</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <img src="https://raw.githubusercontent.com/SteveP999/vanta/main/vanta-logo.png" alt="VANTA" class="foot-logo-img">
+  <div class="foot-label">Hello Texas Records</div>
+  <div class="foot-links">
+    <a href="#">Spotify</a>
+    <a href="#">Apple Music</a>
+    <a href="#">YouTube</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<!-- AUDIO ENGINE -->
+<audio id="audio" preload="none" playsinline webkit-playsinline x-webkit-airplay="allow">
+  <source id="audio-src" src="" type="audio/mpeg">
+</audio>
+
+<div id="player">
+  <div class="p-info">
+    <div class="p-title" id="p-title">—</div>
+    <div class="p-album" id="p-album">Vanta</div>
+  </div>
+  <div class="p-controls">
+    <div class="p-btns">
+      <button class="p-btn" id="p-prev">&#9664;&#9664;</button>
+      <button class="p-play" id="p-playbtn">&#9654;</button>
+      <button class="p-btn" id="p-next">&#9654;&#9654;</button>
+    </div>
+    <div class="p-prog">
+      <span class="p-time" id="p-cur">0:00</span>
+      <div class="p-bar" id="p-bar"><div class="p-fill" id="p-fill"></div></div>
+      <span class="p-time" id="p-dur">0:00</span>
+    </div>
+  </div>
+  <div class="p-right">
+    <input type="range" class="p-vol" id="p-vol" min="0" max="1" step="0.02" value="0.85">
+    <button class="p-close" id="p-close">&#10005;</button>
+  </div>
+</div>
+
+<script>
+// ── TRACK REGISTRY ────────────────────────────────────────────
+// Signal album tracks (same audio as singles — Dropbox links wired in)
+// Singles section and album tracklist share the same audio sources
+const TRACKS = {
+  // Album tracklist entries (Signal)
+  sig_dnp:   { title: "Don't Need Permission", album: 'Signal',       src: 'https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&st=lm80c6pr&raw=1' },
+  sig_ctl:   { title: 'Cut the Line',          album: 'Signal',       src: 'https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&st=ytznhy0t&raw=1' },
+  sig_ds:    { title: 'Dirty Signal',          album: 'Signal',       src: 'https://www.dropbox.com/scl/fi/3ukillkac5wjphdvwwzqg/Dirty-Signal-Mastered-MP3.mp3?rlkey=kf5z5f79k89mnnui3yp096w6b&st=h99jq8tl&raw=1' },
+  // Singles section entries (same audio, labeled as singles)
+  single_dnp:   { title: "Don't Need Permission", album: 'Single',    src: 'https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&st=lm80c6pr&raw=1' },
+  single_ctl:   { title: 'Cut the Line',          album: 'Single',    src: 'https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&st=ytznhy0t&raw=1' },
+  single_dirty: { title: 'Dirty Signal',          album: 'Single',    src: 'https://www.dropbox.com/scl/fi/3ukillkac5wjphdvwwzqg/Dirty-Signal-Mastered-MP3.mp3?rlkey=kf5z5f79k89mnnui3yp096w6b&st=h99jq8tl&raw=1' },
+  sig_tl:       { title: 'Too Loud',              album: 'Signal',    src: 'https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1' },
+  single_tl:    { title: 'Too Loud',              album: 'Single',    src: 'https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1' },
+};
+
+const ALL = ['sig_dnp','sig_ctl','sig_ds','sig_tl'];
+let cur = null;
+const audio   = document.getElementById('audio');
+const player  = document.getElementById('player');
+
+function fmt(s) {
+  if (isNaN(s)) return '0:00';
+  const m = Math.floor(s / 60), sec = Math.floor(s % 60);
+  return m + ':' + (sec < 10 ? '0' : '') + sec;
+}
+
+function setPlaying(id, playing) {
+  document.querySelectorAll('.track-play-btn').forEach(b => {
+    const match = b.getAttribute('onclick').match(/'([^']+)'/);
+    const tid = match ? match[1] : null;
+    b.innerHTML = (tid === id && playing) ? '&#9646;&#9646;' : '&#9654;';
+    b.classList.toggle('playing', tid === id && playing);
+  });
+  document.getElementById('p-playbtn').innerHTML = playing ? '&#9646;&#9646;' : '&#9654;';
+}
+
+function playTrack(id) {
+  const t = TRACKS[id];
+  if (!t) return;
+  if (cur === id) {
+    if (audio.paused) { audio.play().catch(() => {}); setPlaying(id, true); }
+    else              { audio.pause(); setPlaying(id, false); }
+    return;
+  }
+  cur = id;
+  // Do NOT set crossOrigin — Dropbox doesn't send CORS headers and it blocks the request
+  audio.removeAttribute('crossorigin');
+  audio.src = t.src;
+  document.getElementById('p-title').textContent = t.title;
+  document.getElementById('p-album').textContent = t.album;
+  player.style.display = 'grid';
+  setTimeout(() => player.classList.add('visible'), 10);
+  setPlaying(id, true);
+  // load() first, then play() synchronously within the user gesture (iOS requirement).
+  // canplaythrough fallback handles desktop cases where data isn't ready yet.
+  audio.load();
+  const playPromise = audio.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      audio.addEventListener('canplaythrough', function onCPT() {
+        audio.removeEventListener('canplaythrough', onCPT);
+        audio.play().catch(() => {});
+      });
+    });
+  }
+}
+
+audio.addEventListener('timeupdate', () => {
+  const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+  document.getElementById('p-fill').style.width = pct + '%';
+  document.getElementById('p-cur').textContent = fmt(audio.currentTime);
+  document.getElementById('p-dur').textContent = fmt(audio.duration);
+});
+
+audio.addEventListener('ended', () => {
+  // Auto-advance within the album tracklist order
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  const albumKey = mapToAlbum[cur] || cur;
+  const idx = albumOrder.indexOf(albumKey);
+  if (idx < albumOrder.length - 1) playTrack(albumOrder[idx + 1]);
+  else setPlaying(cur, false);
+});
+
+document.getElementById('p-playbtn').addEventListener('click', () => {
+  if (!cur) return;
+  if (audio.paused) { audio.play().catch(() => {}); setPlaying(cur, true); }
+  else              { audio.pause(); setPlaying(cur, false); }
+});
+
+document.getElementById('p-prev').addEventListener('click', () => {
+  if (!cur) return;
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  const albumKey = mapToAlbum[cur] || cur;
+  const idx = albumOrder.indexOf(albumKey);
+  if (audio.currentTime > 3) { audio.currentTime = 0; return; }
+  if (idx > 0) playTrack(albumOrder[idx - 1]);
+});
+
+document.getElementById('p-next').addEventListener('click', () => {
+  if (!cur) return;
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  const albumKey = mapToAlbum[cur] || cur;
+  const idx = albumOrder.indexOf(albumKey);
+  if (idx < albumOrder.length - 1) playTrack(albumOrder[idx + 1]);
+});
+
+document.getElementById('p-bar').addEventListener('click', e => {
+  if (!audio.duration) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+});
+
+document.getElementById('p-vol').addEventListener('input', e => { audio.volume = e.target.value; });
+
+document.getElementById('p-close').addEventListener('click', () => {
+  audio.pause();
+  player.classList.remove('visible');
+  setTimeout(() => player.style.display = 'none', 350);
+  setPlaying(cur, false);
+  cur = null;
+});
+
+const nav = document.getElementById('topnav');
+window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+</script>
+
+<script>
+/* ── LATEST SINGLE (auto-updates from latest.json) ─────────────────────── */
+fetch('https://raw.githubusercontent.com/SteveP999/vanta/main/latest.json')
+  .then(r => r.json())
+  .then(data => {
+    if (!data.title) return;
+    // Update any "Latest" label elements
+    document.querySelectorAll('.single-label, .latest-label, .badge-latest').forEach(el => {
+      el.textContent = data.title;
+    });
+    // Update hero CTA text if present
+    const heroTitle = document.querySelector('.latest-track-title, .hero-single-title');
+    if (heroTitle) heroTitle.textContent = data.title;
+    // Update player track source if matching
+    if (data.audio && typeof TRACKS !== 'undefined') {
+      TRACKS['single_dirty'] = { title: data.title, album: 'Single', src: data.audio };
+      TRACKS['sig_ds'] = { title: data.title, album: 'Signal', src: data.audio };
+    }
+  })
+  .catch(() => {});
+</script>
+
+</body>
+</html>
