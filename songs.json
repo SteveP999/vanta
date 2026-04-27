@@ -1,0 +1,46 @@
+[
+  {
+    "id": "dont_need_permission",
+    "num": "01",
+    "title": "Don't Need Permission",
+    "artist": "Vanta",
+    "album": "Signal",
+    "type": "Single",
+    "isLatest": false,
+    "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/Don%27t%20Need%20Permission%20-%20Album%20Cover.png",
+    "audio": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&st=lm80c6pr&raw=1"
+  },
+  {
+    "id": "cut_the_line",
+    "num": "02",
+    "title": "Cut the Line",
+    "artist": "Vanta",
+    "album": "Signal",
+    "type": "Single",
+    "isLatest": false,
+    "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/Cut%20the%20line%20%28Album%20Cover%29.png",
+    "audio": "https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&st=ytznhy0t&raw=1"
+  },
+  {
+    "id": "dirty_signal",
+    "num": "03",
+    "title": "Dirty Signal",
+    "artist": "Vanta",
+    "album": "Signal",
+    "type": "Single",
+    "isLatest": false,
+    "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Dirty%20Signal%20%28Album%20Cover%29.png",
+    "audio": "https://www.dropbox.com/scl/fi/3ukillkac5wjphdvwwzqg/Dirty-Signal-Mastered-MP3.mp3?rlkey=kf5z5f79k89mnnui3yp096w6b&st=h99jq8tl&raw=1"
+  },
+  {
+    "id": "too_loud",
+    "num": "04",
+    "title": "Too Loud",
+    "artist": "Vanta",
+    "album": "Signal",
+    "type": "Latest Single",
+    "isLatest": true,
+    "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Too%20Loud%20-%20Album%20Cover.png",
+    "audio": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1"
+  }
+]
