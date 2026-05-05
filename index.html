@@ -713,7 +713,7 @@ footer::before {
         File: Vanta_-_Dirty_Signal__Album_Cover_.png
       -->
       <img
-        src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Too%20Loud%20-%20Album%20Cover.png"
+        src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-too-loud-cover.png"
         alt="Too Loud"
         class="latest-art"
         onerror="this.outerHTML='<div class=\'latest-art-placeholder\'>TL</div>'"
@@ -742,7 +742,7 @@ footer::before {
           File: Vanta_-_Signal_-_Album_Cover.png
         -->
         <img
-          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Signal%20-%20Album%20Cover.png"
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-signal-ALBUM-cover.png"
           alt="Signal"
           class="album-art-img"
           onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Signal</span></div>'"
@@ -794,7 +794,7 @@ footer::before {
           File: Vanta_-_Damage_-_Album_Cover.png
         -->
         <img
-          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Damage%20-%20Album%20Cover.png"
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-damage-ALBUM-cover.png"
           alt="Damage"
           class="album-art-img"
           onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Damage</span></div>'"
@@ -824,7 +824,7 @@ footer::before {
           File: Vanta_-_Gravity_-_Album_Cover.png
         -->
         <img
-          src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Gravity%20-%20Album%20Cover.png"
+          src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-gravity-ALBUM-cover.png"
           alt="Gravity"
           class="album-art-img"
           onerror="this.outerHTML='<div class=\'album-art-placeholder\'><div class=\'ph-v\'>V</div><span class=\'ph-label\'>Gravity</span></div>'"
@@ -875,7 +875,7 @@ footer::before {
             File: Don_t_Need_Permission_-_Album_Cover.png
           -->
           <img
-            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Don%27t%20Need%20Permission%20-%20Album%20Cover.png"
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-dont-need-permission-cover.png"
             alt="Don't Need Permission"
             class="single-art-img"
             onerror="this.outerHTML='<div class=\'single-art-placeholder\'>DNP</div>'"
@@ -899,7 +899,7 @@ footer::before {
             File: Cut_the_line__Album_Cover_.png
           -->
           <img
-            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Cut%20the%20line%20%28Album%20Cover%29.png"
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-cut-the-line-cover.png"
             alt="Cut the Line"
             class="single-art-img"
             onerror="this.outerHTML='<div class=\'single-art-placeholder\'>CTL</div>'"
@@ -923,13 +923,13 @@ footer::before {
             File: Vanta_-_Dirty_Signal__Album_Cover_.png
           -->
           <img
-            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Dirty%20Signal%20%28Album%20Cover%29.png"
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-dirty-signal-cover.png"
             alt="Dirty Signal"
             class="single-art-img"
             onerror="this.outerHTML='<div class=\'single-art-placeholder\'>DS</div>'"
           >
           <div class="single-play-overlay">
-            <button class="single-play-big" onclick="playTrack('single_tl')">&#9654;</button>
+            <button class="single-play-big" onclick="playTrack('single_dirty')">&#9654;</button>
           </div>
         </div>
         <div class="single-info">
@@ -943,7 +943,7 @@ footer::before {
       <div class="single-card">
         <div class="single-art-wrap">
           <img
-            src="https://raw.githubusercontent.com/SteveP999/vanta/main/Vanta%20-%20Too%20Loud%20-%20Album%20Cover.png"
+            src="https://raw.githubusercontent.com/SteveP999/vanta/main/covers/vanta-too-loud-cover.png"
             alt="Too Loud"
             class="single-art-img"
             onerror="this.outerHTML='<div class=\'single-art-placeholder\'>TL</div>'"
@@ -1088,13 +1088,12 @@ audio.addEventListener('timeupdate', () => {
 });
 
 audio.addEventListener('ended', () => {
-  // Auto-advance within the album tracklist order
-  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
-  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  // Auto-advance through all 4 tracks, looping back to start
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds', 'sig_tl'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds', single_tl:'sig_tl' };
   const albumKey = mapToAlbum[cur] || cur;
   const idx = albumOrder.indexOf(albumKey);
-  if (idx < albumOrder.length - 1) playTrack(albumOrder[idx + 1]);
-  else setPlaying(cur, false);
+  playTrack(albumOrder[(idx + 1) % albumOrder.length]);
 });
 
 document.getElementById('p-playbtn').addEventListener('click', () => {
@@ -1105,21 +1104,21 @@ document.getElementById('p-playbtn').addEventListener('click', () => {
 
 document.getElementById('p-prev').addEventListener('click', () => {
   if (!cur) return;
-  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
-  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds', 'sig_tl'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds', single_tl:'sig_tl' };
   const albumKey = mapToAlbum[cur] || cur;
   const idx = albumOrder.indexOf(albumKey);
   if (audio.currentTime > 3) { audio.currentTime = 0; return; }
-  if (idx > 0) playTrack(albumOrder[idx - 1]);
+  playTrack(albumOrder[(idx - 1 + albumOrder.length) % albumOrder.length]);
 });
 
 document.getElementById('p-next').addEventListener('click', () => {
   if (!cur) return;
-  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds'];
-  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds' };
+  const albumOrder = ['sig_dnp', 'sig_ctl', 'sig_ds', 'sig_tl'];
+  const mapToAlbum = { single_dnp:'sig_dnp', single_ctl:'sig_ctl', single_dirty:'sig_ds', single_tl:'sig_tl' };
   const albumKey = mapToAlbum[cur] || cur;
   const idx = albumOrder.indexOf(albumKey);
-  if (idx < albumOrder.length - 1) playTrack(albumOrder[idx + 1]);
+  playTrack(albumOrder[(idx + 1) % albumOrder.length]);
 });
 
 document.getElementById('p-bar').addEventListener('click', e => {
