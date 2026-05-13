@@ -1,16 +1,10 @@
 {
   "name": "Vanta",
   "short_name": "Vanta",
-  "description": "Hard rock / alternative artist site for Vanta on Hello Texas Records",
+  "description": "Vanta on Hello Texas Records",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#050203",
-  "theme_color": "#CC1A2A",
-  "icons": [
-    {
-      "src": "images/logos/vanta-logo.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
+  "background_color": "#090806",
+  "theme_color": "#d49a25",
+  "icons": []
 }
