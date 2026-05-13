@@ -52,7 +52,13 @@
       "album": "Signal",
       "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-too-loud-cover.png",
       "audioSrc": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1",
-      "videos": []
+      "videos": [
+        {
+          "title": "Too Loud",
+          "youtube": "https://youtu.be/DbRSu4Kw1Ks",
+          "order": 2
+        }
+      ]
     }
   ]
 }
