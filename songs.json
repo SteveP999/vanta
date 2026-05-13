@@ -15,13 +15,7 @@
     "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-dont-need-permission-cover.png",
     "audio": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1",
     "audioSrc": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1",
-    "videos": [
-      {
-        "title": "Don't Need Permission",
-        "youtube": "https://youtu.be/DbRSu4Kw1Ks",
-        "order": 1
-      }
-    ],
+    "videos": [],
     "includeOnRadio": true,
     "includeOnHomepage": false,
     "explicit": false,
