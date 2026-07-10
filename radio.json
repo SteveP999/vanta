@@ -5,7 +5,7 @@
     "title": "Say It Again",
     "artist": "Vanta",
     "album": "Eclipse",
-    "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-say-it-again-cover.png",
+    "cover": "images/covers/vanta-say-it-again-cover.png",
     "audioSrc": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1",
     "videos": []
   },
@@ -14,31 +14,31 @@
       "title": "Say It Again",
       "artist": "Vanta",
       "album": "Eclipse",
-      "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-say-it-again-cover.png",
+      "cover": "images/covers/vanta-say-it-again-cover.png",
       "audioSrc": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1",
       "videos": []
     },
     {
       "title": "Cut the Line",
       "artist": "Vanta",
-      "album": "Signal",
-      "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-cut-the-line-cover.png",
+      "album": "Eclipse",
+      "cover": "images/covers/vanta-cut-the-line-cover.png",
       "audioSrc": "https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&raw=1",
       "videos": []
     },
     {
       "title": "Don't Need Permission",
       "artist": "Vanta",
-      "album": "Signal",
-      "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-dont-need-permission-cover.png",
+      "album": "Eclipse",
+      "cover": "images/covers/vanta-dont-need-permission-cover.png",
       "audioSrc": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1",
       "videos": []
     },
     {
       "title": "Too Loud",
       "artist": "Vanta",
-      "album": "Signal",
-      "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-too-loud-cover.png",
+      "album": "Eclipse",
+      "cover": "images/covers/vanta-too-loud-cover.png",
       "audioSrc": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1",
       "videos": [
         {

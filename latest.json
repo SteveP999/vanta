@@ -3,8 +3,8 @@
   "artist": "Vanta",
   "album": "Eclipse",
   "type": "Latest Single",
-  "cover": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-say-it-again-cover.png",
-  "image": "https://raw.githubusercontent.com/SteveP999/vanta/main/images/covers/vanta-say-it-again-cover.png",
+  "cover": "images/covers/vanta-say-it-again-cover.png",
+  "image": "images/covers/vanta-say-it-again-cover.png",
   "audio": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1",
   "audioSrc": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1",
   "videos": []
