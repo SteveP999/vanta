@@ -125,6 +125,7 @@ a{color:inherit}
 }
 .stage-logo img{
   width:min(1900px,99vw);
+  max-width:94vw !important;  /* size overrides set width:auto; this keeps the logo on screen */
   max-height:820px;
   object-fit:contain;
   mix-blend-mode:screen;
@@ -412,6 +413,13 @@ a{color:inherit}
   height:100%;
   display:block;
 }
+.video-embed-wrap.tall{aspect-ratio:9 / 16 !important;width:min(100%, calc(80vh * 9 / 16));margin:0 auto}
+.excl-wrap{position:relative;aspect-ratio:16 / 9;background:#000;overflow:hidden}
+.excl-wrap.tall{aspect-ratio:9 / 16;width:min(100%, calc(80vh * 9 / 16));margin:0 auto}
+.excl-wrap video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;display:block}
+.excl-card{border-color:var(--accent)!important}
+.excl-tag{display:inline-block;font-family:sans-serif;font-size:.55em;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:var(--accent);color:#000;padding:.25em .65em;margin-right:.6em;vertical-align:middle;border-radius:2px}
+.excl-badge{border-color:var(--accent)!important;color:var(--accent)!important}
 .video-card-title{
   font-family:'DM Serif Display',serif;
   font-size:1.2rem;
@@ -441,6 +449,7 @@ a{color:inherit}
 .p-btn-row{display:flex;align-items:center;gap:1.2rem}
 .p-btn{background:transparent;border:none;color:var(--muted);cursor:pointer;font-size:.9rem;padding:.25rem;transition:color .2s}
 .p-btn:hover{color:var(--accent-lt)}
+.p-btn.active{color:var(--accent)}
 #p-playbtn{width:36px;height:36px;border:1px solid var(--line);background:transparent;color:var(--accent);cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center}
 .progress-wrap{height:4px;background:color-mix(in srgb,var(--accent) 14%, transparent);width:100%;max-width:520px;cursor:pointer}
 .progress-fill{height:100%;width:0;background:linear-gradient(to right,var(--accent),var(--accent-lt))}
@@ -1190,6 +1199,7 @@ footer{background:linear-gradient(to bottom,rgba(0,0,0,.28),rgba(0,0,0,.52)),var
       <button class="p-btn" onclick="prevTrack()">&#9664;&#9664;</button>
       <button id="p-playbtn" onclick="togglePlay()">&#9654;</button>
       <button class="p-btn" onclick="nextTrack()">&#9654;&#9654;</button>
+      <button id="shuffle-btn" class="p-btn" onclick="toggleShuffle()" title="Shuffle all songs">&#128256;</button>
     </div>
     <div class="progress-wrap" onclick="seek(event)"><div id="progress-fill" class="progress-fill"></div></div>
     <div style="display:flex;justify-content:space-between;width:100%;max-width:520px">
@@ -1201,12 +1211,58 @@ footer{background:linear-gradient(to bottom,rgba(0,0,0,.28),rgba(0,0,0,.52)),var
 </div>
 
 <audio id="audio"></audio>
-<script id="artist-data" type="application/json">{"artist":{"id":"vanta","name":"Vanta","genre":"Funk rock / alternative rock","tagline":"Rock that doesn't ask for permission","bio":"Rock that doesn't ask for permission","theme":"violet_indie","logo":"images/logos/vanta-logo.png","hero":"images/artist/vanta-hero-photo.png","discographyBg":"images/artist/vanta-discography-bg.png","videoBg":"images/artist/vanta-video-bg.png","photos":["images/artist/vanta-photo-1.png","images/artist/vanta-photo-2.png","images/artist/vanta-photo-3.png"]},"latest":{"title":"If I Know Me","artist":"Vanta","album":"Eclipse","type":"Latest Single","cover":"images/covers/vanta-if-i-know-me-cover.png","image":"images/covers/vanta-if-i-know-me-cover.png","audio":"https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1","videos":[]},"songs":[{"id":"vanta-say-it-again","num":"01","title":"Say It Again","artist":"Vanta","album":"Eclipse","trackNumber":1,"albumOrder":1,"albumCover":"images/covers/vanta-eclipse-ALBUM-cover.png","type":"single","isLatest":false,"cover":"images/covers/vanta-say-it-again-cover.png","audio":"https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1","videos":[],"includeOnRadio":false,"includeOnHomepage":false,"explicit":false,"tags":[],"streaming":{}},{"id":"cut_the_line","num":"02","title":"Cut the Line","artist":"Vanta","album":"Eclipse","trackNumber":2,"albumOrder":2,"albumCover":"images/covers/vanta-eclipse-ALBUM-cover.png","type":"single","isLatest":false,"cover":"images/covers/vanta-cut-the-line-cover.png","audio":"https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&raw=1","videos":[],"includeOnRadio":false,"includeOnHomepage":false,"explicit":false,"tags":[],"streaming":{}},{"id":"dont_need_permission","num":"03","title":"Don't Need Permission","artist":"Vanta","album":"Eclipse","trackNumber":3,"albumOrder":3,"albumCover":"images/covers/vanta-eclipse-ALBUM-cover.png","type":"single","isLatest":false,"cover":"images/covers/vanta-dont-need-permission-cover.png","audio":"https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1","videos":[],"includeOnRadio":false,"includeOnHomepage":false,"explicit":false,"tags":[],"streaming":{}},{"id":"too_loud","num":"04","title":"Too Loud","artist":"Vanta","album":"Eclipse","trackNumber":4,"albumOrder":4,"albumCover":"images/covers/vanta-eclipse-ALBUM-cover.png","type":"single","isLatest":false,"cover":"images/covers/vanta-too-loud-cover.png","audio":"https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1","videos":[{"title":"Too Loud","youtube":"https://youtu.be/DbRSu4Kw1Ks","order":2}],"includeOnRadio":false,"includeOnHomepage":false,"explicit":false,"tags":[],"streaming":{}},{"id":"vanta-if-i-know-me","num":"05","title":"If I Know Me","artist":"Vanta","album":"Eclipse","trackNumber":5,"albumOrder":5,"albumCover":"images/covers/vanta-eclipse-ALBUM-cover.png","type":"single","isLatest":false,"cover":"images/covers/vanta-if-i-know-me-cover.png","audio":"https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1","videos":[],"includeOnRadio":false,"includeOnHomepage":false,"explicit":false,"tags":[],"streaming":{}},{"id":"vanta-a-man-like-me","num":"01","title":"A Man Like Me","artist":"Vanta","album":"Eclipse","trackNumber":99,"albumOrder":99,"albumCover":"","type":"single","isLatest":true,"cover":"images/covers/vanta-a-man-like-me-cover.png","audio":"https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1","audioSrc":"https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1","videos":[],"includeOnRadio":false,"includeOnHomepage":true,"explicit":false,"tags":[],"streaming":{"spotify":"","apple":"","youtubeMusic":""}}],"hasVideoSection":true}</script>
+<script id="artist-data" type="application/json">{"artist": {"id": "vanta", "name": "Vanta", "genre": "Funk rock / alternative rock", "tagline": "Rock that doesn't ask for permission", "bio": "Rock that doesn't ask for permission", "theme": "violet_indie", "logo": "images/logos/vanta-logo.png", "hero": "images/artist/vanta-hero-photo.png", "discographyBg": "images/artist/vanta-discography-bg.png", "videoBg": "images/artist/vanta-video-bg.png", "photos": ["images/artist/vanta-photo-1.png", "images/artist/vanta-photo-2.png", "images/artist/vanta-photo-3.png"]}, "latest": {"title": "A Man Like Me", "artist": "Vanta", "album": "Eclipse", "type": "Latest Single", "cover": "images/covers/vanta-a-man-like-me-cover.png", "image": "images/covers/vanta-a-man-like-me-cover.png", "audio": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1", "videos": []}, "songs": [{"id": "vanta-say-it-again", "num": "01", "title": "Say It Again", "artist": "Vanta", "album": "Eclipse", "trackNumber": 1, "albumOrder": 1, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": false, "cover": "images/covers/vanta-say-it-again-cover.png", "audio": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/m44zpz3iy0opjdnp9p23u/vanta-say-it-again-mp3.mp3?rlkey=m38kdqjh98pkbpy7zlm270a9e&raw=1", "videos": [], "includeOnRadio": true, "includeOnHomepage": false, "explicit": false, "tags": [], "streaming": {"spotify": "", "apple": "", "youtubeMusic": ""}}, {"id": "cut_the_line", "num": "02", "title": "Cut the Line", "artist": "Vanta", "album": "Eclipse", "trackNumber": 2, "albumOrder": 2, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": false, "cover": "images/covers/vanta-cut-the-line-cover.png", "audio": "https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/kpqpw6x42mlhcn2gtgqka/Cut-the-Line-Mastered-MP3.mp3?rlkey=p98ux0qljqvko46toju9qm125&raw=1", "videos": [], "includeOnRadio": true, "includeOnHomepage": false, "explicit": false, "tags": [], "streaming": {}}, {"id": "dont_need_permission", "num": "03", "title": "Don't Need Permission", "artist": "Vanta", "album": "Eclipse", "trackNumber": 3, "albumOrder": 3, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": false, "cover": "images/covers/vanta-dont-need-permission-cover.png", "audio": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/7autvxh8dd3aaktvz3vm1/Vanta-Don-t-Need-Permission-Mastered-MP3.mp3?rlkey=505p9f0jnfsg3wau3tpzscbat&raw=1", "videos": [], "includeOnRadio": true, "includeOnHomepage": false, "explicit": false, "tags": [], "streaming": {}}, {"id": "too_loud", "num": "04", "title": "Too Loud", "artist": "Vanta", "album": "Eclipse", "trackNumber": 4, "albumOrder": 4, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": false, "cover": "images/covers/vanta-too-loud-cover.png", "audio": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1", "videos": [{"youtube": "https://youtu.be/DbRSu4Kw1Ks", "title": "Official Video", "order": 1}], "includeOnRadio": true, "includeOnHomepage": false, "explicit": false, "tags": [], "streaming": {"spotify": "", "apple": "", "youtubeMusic": ""}}, {"id": "vanta-if-i-know-me", "num": "05", "title": "If I Know Me", "artist": "Vanta", "album": "Eclipse", "trackNumber": 5, "albumOrder": 5, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": false, "cover": "images/covers/vanta-if-i-know-me-cover.png", "audio": "https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/um1xgnlosgtk3ngrdrucf/vanta-if-I-know-me-mp3.mp3?rlkey=z0pq6mfr6wo1ogkj7uq741ya5&raw=1", "videos": [], "includeOnRadio": true, "includeOnHomepage": false, "explicit": false, "tags": [], "streaming": {}}, {"id": "vanta-a-man-like-me", "num": "06", "title": "A Man Like Me", "artist": "Vanta", "album": "Eclipse", "trackNumber": 6, "albumOrder": 6, "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png", "type": "single", "isLatest": true, "cover": "images/covers/vanta-a-man-like-me-cover.png", "audio": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1", "audioSrc": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1", "videos": [], "includeOnRadio": false, "includeOnHomepage": true, "explicit": false, "tags": [], "streaming": {"spotify": "", "apple": "", "youtubeMusic": ""}}], "hasVideoSection": true}</script>
 <script>
 const DATA = JSON.parse(document.getElementById('artist-data').textContent);
 const SONGS = DATA.songs || [];
 let currentIndex = -1;
 const audio = document.getElementById('audio');
+
+// Shuffle All: one randomized pass through every song, no repeats, kept for
+// this browser tab's session (sessionStorage) so it survives navigating the
+// page but resets on a fresh visit. Turning it off returns to the order
+// shown on screen (album order, then track order within each album).
+let shuffleMode = false;
+let shuffleQueue = [];
+let shufflePos = -1;
+function shuffleKey() { return 'htr_shuffle_' + ((DATA.artist && DATA.artist.id) || 'artist'); }
+function buildShuffleQueue() {
+  const idxs = SONGS.map((_, i) => i);
+  for (let i = idxs.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = idxs[i]; idxs[i] = idxs[j]; idxs[j] = tmp;
+  }
+  return idxs;
+}
+function saveShuffleState() {
+  try { sessionStorage.setItem(shuffleKey(), JSON.stringify({queue: shuffleQueue, pos: shufflePos})); } catch(e) {}
+}
+function restoreShuffleState() {
+  try {
+    const raw = sessionStorage.getItem(shuffleKey());
+    if (!raw) return;
+    const saved = JSON.parse(raw);
+    if (!Array.isArray(saved.queue) || saved.queue.length !== SONGS.length) return;
+    shuffleQueue = saved.queue;
+    shufflePos = typeof saved.pos === 'number' ? saved.pos : -1;
+    shuffleMode = true;
+    const btn = document.getElementById('shuffle-btn');
+    if (btn) btn.classList.add('active');
+  } catch(e) {}
+}
+window.toggleShuffle = function() {
+  shuffleMode = !shuffleMode;
+  const btn = document.getElementById('shuffle-btn');
+  if (shuffleMode) {
+    shuffleQueue = buildShuffleQueue();
+    shufflePos = -1;
+    saveShuffleState();
+    if (btn) btn.classList.add('active');
+  } else {
+    try { sessionStorage.removeItem(shuffleKey()); } catch(e) {}
+    if (btn) btn.classList.remove('active');
+  }
+};
 
 function esc(value) {
   return String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
@@ -1255,10 +1311,29 @@ function updateNowPlayingArt(song) {
     }, 120);
   }
 }
+function ytVideos(song) {
+  return (Array.isArray(song.videos) ? song.videos : []).filter(v => v && !v.exclusive && (v.youtube || v.url || v.href || v.youtube_9));
+}
+function exVideos(song) {
+  return (Array.isArray(song.videos) ? song.videos : []).filter(v => v && v.exclusive && (v.mp4_16 || v.mp4_9));
+}
 function videoUrl(song) {
-  const videos = Array.isArray(song.videos) ? song.videos : [];
-  if (!videos.length) return '';
-  return videos[0].youtube || videos[0].url || videos[0].href || '';
+  const v = ytVideos(song)[0];
+  return v ? (v.youtube || v.url || v.href || v.youtube_9 || '') : '';
+}
+// phones (portrait / narrow) get the vertical YouTube video when there is one, computers the 16:9
+function isTallScreen() {
+  return window.matchMedia('(orientation: portrait)').matches || window.innerWidth < 700;
+}
+function ytPick(song) {
+  const v = ytVideos(song)[0] || {};
+  const wide = v.youtube || v.url || v.href || '', tall = v.youtube_9 || '';
+  const useTall = tall && (isTallScreen() || !wide);
+  return { url: useTall ? tall : wide, tall: !!useTall };
+}
+function exclusiveBadge(song, stop) {
+  if (!exVideos(song).length) return '';
+  return `<a class="track-badge excl-badge" href="#excl-${esc(song.id)}"${stop ? ' onclick="event.stopPropagation()"' : ''}>&#9654; Exclusive Video</a>`;
 }
 function youtubeEmbedUrl(url) {
   const value = String(url || '').trim();
@@ -1281,9 +1356,9 @@ function youtubeEmbedUrl(url) {
   }
 }
 function videoMarkup(song) {
-  const url = videoUrl(song);
-  if (!url) return '<span class="track-badge">Video Coming Soon</span>';
-  return `<a class="track-badge" target="_blank" rel="noreferrer" href="${esc(url)}">Watch Video</a>`;
+  const url = videoUrl(song), ex = exclusiveBadge(song);
+  if (!url && !ex) return '<span class="track-badge">Video Coming Soon</span>';
+  return ex + (url ? ` <a class="track-badge" target="_blank" rel="noreferrer" href="${esc(url)}">Watch Video</a>` : '');
 }
 function renderLatest() {
   const latest = SONGS.find(s => s.isLatest) || SONGS[0];
@@ -1306,6 +1381,23 @@ function renderVideo() {
   const container = document.getElementById('video-render');
   if (!container) return;
 
+  const exItems = [];
+  SONGS.forEach(s => exVideos(s).forEach(v => exItems.push({ song: s, v: v })));
+  exItems.sort((a, b) => (parseInt(a.v.order ?? 9999, 10) - parseInt(b.v.order ?? 9999, 10)) || String(a.song.title || '').localeCompare(String(b.song.title || '')));
+  const seenEx = {};
+  const exHtml = exItems.map(({ song, v }) => {
+    const anchor = seenEx[song.id] ? '' : ` id="excl-${esc(song.id)}"`; seenEx[song.id] = 1;
+    return `
+        <div class="video-card excl-card"${anchor}>
+          <div class="excl-wrap">
+            <video class="excl-video" controls playsinline preload="metadata" poster="${esc(songCover(song))}"
+              data-v16="${esc(v.mp4_16 || '')}" data-v9="${esc(v.mp4_9 || '')}"></video>
+          </div>
+          <div class="video-card-title"><span class="excl-tag">Exclusive</span>${esc(v.title && v.title !== 'Official Video' ? song.title + ' — ' + v.title : song.title)}</div>
+          <div class="video-card-sub" style="padding:0 1rem 1rem">Only here — not on YouTube yet</div>
+        </div>`;
+  }).join('');
+
   const videoSongs = SONGS
     .filter(s => videoUrl(s))
     .sort((a, b) => {
@@ -1314,18 +1406,19 @@ function renderVideo() {
       return parseInt(av, 10) - parseInt(bv, 10) || String(a.title || '').localeCompare(String(b.title || ''));
     });
 
-  if (!videoSongs.length) {
+  if (!videoSongs.length && !exItems.length) {
     container.innerHTML = '<div class="video-coming-soon visible"><div class="play-triangle"></div><strong>Video Coming Soon</strong><span>' + esc(DATA.artist.name) + ' does not have a video assigned yet. The video system is installed and ready.</span></div>';
     return;
   }
 
   container.innerHTML = `
     <div class="video-grid">
+      ${exHtml}
       ${videoSongs.map(song => `
         <div class="video-card video-card-embed">
-          <div class="video-embed-wrap">
+          <div class="video-embed-wrap${ytPick(song).tall ? ' tall' : ''}">
             <iframe
-              src="${esc(youtubeEmbedUrl(videoUrl(song)))}"
+              src="${esc(youtubeEmbedUrl(ytPick(song).url))}"
               title="${esc(song.title)} video"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -1339,11 +1432,60 @@ function renderVideo() {
       `).join('')}
     </div>
   `;
+  setupExclusives();
+}
+// Exclusive videos: phones (portrait / narrow) get the 9:16 file, computers the 16:9 -
+// whichever exists if only one does. Re-checked on rotate/resize unless the video is playing.
+function pickExclusiveSources() {
+  const tall = window.matchMedia('(orientation: portrait)').matches || window.innerWidth < 700;
+  document.querySelectorAll('video.excl-video').forEach(v => {
+    if (!v.paused && v.currentSrc) return;
+    const s16 = v.dataset.v16, s9 = v.dataset.v9;
+    const src = tall ? (s9 || s16) : (s16 || s9);
+    v.parentElement.classList.toggle('tall', src === s9 && !!s9);
+    if (v.getAttribute('src') !== src) { v.setAttribute('src', src); v.load(); }
+  });
+}
+function setupExclusives() {
+  const vids = document.querySelectorAll('video.excl-video');
+  if (!vids.length) return;
+  pickExclusiveSources();
+  vids.forEach(v => v.addEventListener('play', () => {
+    document.querySelectorAll('video.excl-video').forEach(o => { if (o !== v) o.pause(); });
+    if (!audio.paused) togglePlay();                     // pause this site's music player
+    try { new BroadcastChannel('htr-audio').postMessage({type:'artist-play'}); } catch (e) {}   // and HTR Radio
+    try { if (typeof gtag === 'function') gtag('event', 'play_exclusive_video', { artist: DATA.artist.name }); } catch (e) {}
+  }));
+  let t = null;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(pickExclusiveSources, 250); });
+  audio.addEventListener('play', () => document.querySelectorAll('video.excl-video').forEach(v => v.pause()));
 }
 function trackOrder(song) {
   const raw = song.trackNumber ?? song.albumOrder ?? song.num ?? 9999;
   const n = parseInt(raw, 10);
   return Number.isFinite(n) ? n : 9999;
+}
+// Canonical playback order: same grouping + sort as the on-screen tracklist,
+// flattened into one list of SONGS indices. next/prev walk this, never the
+// raw SONGS array order, so playback can't drift from what's displayed.
+function computePlayOrder() {
+  const albums = new Map();
+  SONGS.forEach((song, i) => {
+    const album = song.album || 'Singles';
+    if (!albums.has(album)) albums.set(album, []);
+    albums.get(album).push(i);
+  });
+  const order = [];
+  albums.forEach(idxs => {
+    const sorted = idxs.slice().sort((a, b) => trackOrder(SONGS[a]) - trackOrder(SONGS[b]) || String(SONGS[a].title || '').localeCompare(String(SONGS[b].title || '')));
+    order.push(...sorted);
+  });
+  return order;
+}
+let PLAY_ORDER = [];
+function currentPlayPos() {
+  const pos = PLAY_ORDER.indexOf(currentIndex);
+  return pos === -1 ? 0 : pos;
 }
 function renderAlbums() {
   const root = document.getElementById('albums');
@@ -1369,7 +1511,7 @@ function renderAlbums() {
     const sideClass = idx % 2 ? 'cover-right' : 'cover-left';
 
     const trackRows = orderedSongs.map((song, i) => {
-      const latestBadge = (song.isLatest ? '<span class="track-badge">Latest</span>' : '') + (videoUrl(song) ? ' <a class="track-badge" target="_blank" rel="noreferrer" href="' + esc(videoUrl(song)) + '">Watch Video</a>' : '');
+      const latestBadge = (song.isLatest ? '<span class="track-badge">Latest</span>' : '') + (exVideos(song).length ? ' ' + exclusiveBadge(song) : '') + (videoUrl(song) ? ' <a class="track-badge" target="_blank" rel="noreferrer" href="' + esc(videoUrl(song)) + '">Watch Video</a>' : '');
       return `
         <div class="track-row">
           <div class="track-num">${String(i + 1).padStart(2, '0')}</div>
@@ -1389,7 +1531,7 @@ function renderAlbums() {
         </div>
         <div class="release-title">${esc(song.title)}</div>
         <div class="release-album">${esc(song.album || '')}</div>
-        ${videoUrl(song) ? `<a class="track-badge" target="_blank" rel="noreferrer" href="${esc(videoUrl(song))}" onclick="event.stopPropagation()">Watch Video</a>` : ''}
+        ${exclusiveBadge(song, true)}${videoUrl(song) ? `<a class="track-badge" target="_blank" rel="noreferrer" href="${esc(videoUrl(song))}" onclick="event.stopPropagation()">Watch Video</a>` : ''}
       </div>
     `).join('');
 
@@ -1490,8 +1632,27 @@ function togglePlay() {
     document.querySelectorAll('.np-play-pause').forEach(b=>b.innerHTML='&#9654;');
   }
 }
-function nextTrack() { if (SONGS.length) playIndex((currentIndex + 1) % SONGS.length); }
-function prevTrack() { if (SONGS.length) playIndex((currentIndex - 1 + SONGS.length) % SONGS.length); }
+function nextTrack() {
+  if (!SONGS.length || !PLAY_ORDER.length) return;
+  if (shuffleMode) {
+    shufflePos++;
+    if (shufflePos >= shuffleQueue.length) { shuffleQueue = buildShuffleQueue(); shufflePos = 0; }
+    saveShuffleState();
+    playIndex(shuffleQueue[shufflePos]);
+  } else {
+    const pos = (currentPlayPos() + 1) % PLAY_ORDER.length;
+    playIndex(PLAY_ORDER[pos]);
+  }
+}
+function prevTrack() {
+  if (!SONGS.length || !PLAY_ORDER.length) return;
+  if (shuffleMode) {
+    if (shufflePos > 0) { shufflePos--; saveShuffleState(); playIndex(shuffleQueue[shufflePos]); }
+  } else {
+    const pos = (currentPlayPos() - 1 + PLAY_ORDER.length) % PLAY_ORDER.length;
+    playIndex(PLAY_ORDER[pos]);
+  }
+}
 function seek(e) {
   if (!audio.duration) return;
   const rect = e.currentTarget.getBoundingClientRect();
@@ -1515,6 +1676,8 @@ function checkPhotoStrip() {
 renderLatest();
 renderVideo();
 renderAlbums();
+PLAY_ORDER = computePlayOrder();
+restoreShuffleState();
 </script>
 </body>
 </html>

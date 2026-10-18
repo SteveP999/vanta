@@ -18,7 +18,11 @@
     "includeOnHomepage": false,
     "explicit": false,
     "tags": [],
-    "streaming": {}
+    "streaming": {
+      "spotify": "",
+      "apple": "",
+      "youtubeMusic": ""
+    }
   },
   {
     "id": "cut_the_line",
@@ -78,16 +82,20 @@
     "audioSrc": "https://www.dropbox.com/scl/fi/4228evr7l0qrs0kegwzty/Too-Loud-Mastered-MP3.mp3?rlkey=pw5icqqci9xf6cj36iqarmkdj&raw=1",
     "videos": [
       {
-        "title": "Too Loud",
         "youtube": "https://youtu.be/DbRSu4Kw1Ks",
-        "order": 2
+        "title": "Official Video",
+        "order": 1
       }
     ],
     "includeOnRadio": true,
     "includeOnHomepage": false,
     "explicit": false,
     "tags": [],
-    "streaming": {}
+    "streaming": {
+      "spotify": "",
+      "apple": "",
+      "youtubeMusic": ""
+    }
   },
   {
     "id": "vanta-if-i-know-me",
@@ -112,13 +120,13 @@
   },
   {
     "id": "vanta-a-man-like-me",
-    "num": "01",
+    "num": "06",
     "title": "A Man Like Me",
     "artist": "Vanta",
     "album": "Eclipse",
-    "trackNumber": 99,
-    "albumOrder": 99,
-    "albumCover": "",
+    "trackNumber": 6,
+    "albumOrder": 6,
+    "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png",
     "type": "single",
     "isLatest": true,
     "cover": "images/covers/vanta-a-man-like-me-cover.png",
