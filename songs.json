@@ -122,13 +122,17 @@
     "type": "single",
     "isLatest": true,
     "cover": "images/covers/vanta-a-man-like-me-cover.png",
-    "audio": "https://www.dropbox.com/scl/fi/v0lami0jek2e9vhitwvz5/vanta-man-like-me-WAV.wav?rlkey=qyhdvjjisu92aigdupfrp2j28&raw=1",
-    "audioSrc": "https://www.dropbox.com/scl/fi/v0lami0jek2e9vhitwvz5/vanta-man-like-me-WAV.wav?rlkey=qyhdvjjisu92aigdupfrp2j28&raw=1",
+    "audio": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1",
+    "audioSrc": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=z3v70n82ohep8lm9zp995rfur&raw=1",
     "videos": [],
     "includeOnRadio": false,
     "includeOnHomepage": true,
     "explicit": false,
     "tags": [],
-    "streaming": {}
+    "streaming": {
+      "spotify": "",
+      "apple": "",
+      "youtubeMusic": ""
+    }
   }
 ]
