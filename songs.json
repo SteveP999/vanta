@@ -128,13 +128,13 @@
     "albumOrder": 6,
     "albumCover": "images/covers/vanta-eclipse-ALBUM-cover.png",
     "type": "single",
-    "isLatest": true,
+    "isLatest": false,
     "cover": "images/covers/vanta-a-man-like-me-cover.png",
     "audio": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=9n4huk2tznu0wuuke5hcvhbuz&raw=1",
     "audioSrc": "https://www.dropbox.com/scl/fi/iot6ekeh9ecew7cg4hcoh/vanta-man-like-me-MP3-mastered.mp3?rlkey=9n4huk2tznu0wuuke5hcvhbuz&raw=1",
     "videos": [],
     "includeOnRadio": false,
-    "includeOnHomepage": true,
+    "includeOnHomepage": false,
     "explicit": false,
     "tags": [],
     "streaming": {
@@ -142,5 +142,26 @@
       "apple": "",
       "youtubeMusic": ""
     }
+  },
+  {
+    "id": "vanta-here-comes-the-pain",
+    "num": "06",
+    "title": "Here Comes The Pain",
+    "artist": "Vanta",
+    "album": "Eclipse",
+    "trackNumber": 6,
+    "albumOrder": 6,
+    "albumCover": "",
+    "type": "single",
+    "isLatest": true,
+    "cover": "images/covers/vanta-here-comes-the-pain-cover.png",
+    "audio": "https://www.dropbox.com/scl/fi/e13ruwsv4ezof9xuq6bfx/vanta-here-comes-the-MP3-mastered.mp3?rlkey=i7pegsdmjcmlo35rwjimn7d9o&raw=1",
+    "audioSrc": "https://www.dropbox.com/scl/fi/e13ruwsv4ezof9xuq6bfx/vanta-here-comes-the-MP3-mastered.mp3?rlkey=i7pegsdmjcmlo35rwjimn7d9o&raw=1",
+    "videos": [],
+    "includeOnRadio": false,
+    "includeOnHomepage": true,
+    "explicit": false,
+    "tags": [],
+    "streaming": {}
   }
 ]
